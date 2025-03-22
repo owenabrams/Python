@@ -73,7 +73,7 @@ def fact(n):
     else:
         return n*fact(n-1)
 n = 4
-print(fact(4))
+print(fact(7))
 
 #Compare above with FACTORIAL ITERATIVE - 
 # you will find that recursion is much simpler, more intuitive, maybe efficient for programmer and computer 
@@ -124,9 +124,9 @@ to = "B"
 spare = "C"
 n = 4
 
-print(Towers(n, fr, to, spare))
+#print(Towers(n, fr, to, spare))
 
-
+# Example 2: TOWERS OF HANOI
 # Recursive Python function to solve the tower of hanoi
 
 def TowerOfHanoi(n , source, destination, auxiliary):
@@ -139,15 +139,104 @@ def TowerOfHanoi(n , source, destination, auxiliary):
         
 # Driver code
 n = 4
-TowerOfHanoi(n,'A','B','C') 
+#TowerOfHanoi(n,'A','B','C') 
 # A, C, B are the name of rods
 
+'''
+RECURSION WITH MULTIPLE BASE CASES
+'''
+# Fibonacci Numbers
+# Leonardo of Pisa (aka Fibonnaci) modeled the following challenge
+'''
+    ~ Newborn pair of rabbits (one female, one male) are put in a pen.
+    ~ Rabbits mate at age of one month.
+    ~ Rabbits have a one month gestation period.
+    ~ Assume rabbits never die, that female always produces one new pair (one male, one female) every month from its second month on.
+    ~ How many female rabbits are there at the end of one year?
+    ~
+    Month Females
+    0     1 
+    1     1
+    2     2
+    3     3
+    4     5
+    5     8
+    
+    Two recursive calls with different sizes of arguments, compared to Towers of Hanoi, which also had two recursive calls but with the same size of call
+    '''
+# Now we need two base cases (to return the fibonacci of x in the example below)
 
+def fib(x):
+    if x == 0 or x == 1:
+        return 1
+    else:
+        return fib(x-1) + fib(x-2)
 
+# RECURSION ON NONE NUMERICS
+'''
+How to check if a string of characters is a palindrome, i.e reads the same forwards and backwards
+ # "Able was I, ere I sa Elba" ~ attributed to Napoleon
+ # "SATOR AREPO TENET OPERA ROTAS"  ~ the SATOR SQUARE
+ # "Are we not drawn onward, we few, drawn onward to new era?" # attributed to Anne Michaels
+ Individual words
+The words are in Latin, and the following translations are known by scholars:[2][6]
+
+SATOR
+(nominative noun; from serere, "to sow") sower, planter, founder, progenitor (usually divine); originator; literally 'seeder';[2][6]
+AREPO
+unknown word, perhaps a proper name, either invented to complete the palindrome or of a non-Latin origin (see § Arepo interpretations);[2][6]
+TENET
+(verb; from tenere, 'to hold') he/she/it holds, keeps, comprehends, possesses, masters, preserves, sustains;[2][6]
+OPERA
+(ablative [see opera] singular noun) service, pains, labor; care, effort, attention;[2][6]
+ROTAS
+(rotās, accusative plural of rota) wheels. [2][6]
+Sentence construction
+
+Sator form of the square on a door in Grenoble, France
+The most direct sentence translation is: "The sower (or, farmer) Arepo holds the wheels with care (or, with care the wheels)".[1][10][14][4][17] 
+Similar translations include: "The farmer Arepo works his wheels",[18] or "Arepo the sower (sator) guides (tenet) the wheel (rotas) with skill (opera)".[19]
+'''
+# Solving Recursively?
+ # - First, convert the string to just characters, by stripping out the punctuation, then convert uppercase to lower case
+ # - Then:
+    # ~ Base case: a string of length 0 or 1 is a palindrome
+    # ~ Recursive case:
+        # - If the first character matches the last character, then is a palindrome if the middle section is a palindrome
+
+'''
+'Able was I, ere I saw Elba' -> 'ablewasiereisawelba'
+isPAlindrome ('ablewasiereisawleba')
+ is same as:
+    'a' == 'a' and isPalindrome('blewasiereisawelb')
+'''
+
+def isPalindrome(s):
+    
+    def toChars(s):
+        s = s.lower()
+        ans = ''
+        for c in s:
+            if c in 'abcdefghijklmnopqrstuvwxyz':
+                ans = ans + c
+        return ans
+    def isPal(s):
+        if len(s) <= 1:
+            return True
+        else:
+            return s [0] == s[-1] and isPal(s[1:-1])
+        
+    return isPal(toChars(s))
+
+s = "SATOR AREPO TENET OPERA ROTAS"
+print(isPalindrome(s))
+
+#NExt: Dictionaries
 
 if __name__ == "__main__":
     mult(a,b)
     fact(n)
-    Towers(n, fr, to, spare)
+    #Towers(n, fr, to, spare)
+    isPalindrome(s)
 
  
